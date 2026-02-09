@@ -16,11 +16,22 @@ namespace OO_them_ALL
         public static void checkCard()
         {
             Console.Clear();
-            Console.WriteLine("\t══════════ BIENVENUE CHEZ RS7 ══════════\n");
-            Console.WriteLine("\t══════════ MENU PRINCIPAL ══════════\n");
+
+            // Display main menu and ask for card number
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(@"█████   █████ ███████   █████     ███   █    █ █   █");
+            Console.WriteLine(@"█    █ █           █    █    █   █   █  ██   █ █  █ ");
+            Console.WriteLine(@"█████   ████      █     █████   ███████ █ █  █ ███  ");
+            Console.WriteLine(@"█   █       █    █      █    █  █     █ █  █ █ █  █ ");
+            Console.WriteLine(@"█    █  █████   █       █████   █     █ █    █ █   █");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\t\tWelcome to RS7 BANK\n");
+            Console.ResetColor();
             Console.Write("Numéro de carte (ex: 0212XXXXXXXXXXXX) :  ");
             cardNumber = Console.ReadLine();
-            
+
+            // Loop until the card number is correct
             while (valueOkNumCarte == false)
             {
 
@@ -29,19 +40,25 @@ namespace OO_them_ALL
                 {
                     if (cardNumber.Length == cardNumberLength)
                     {
+                        // Ask for the PIN code
                         Console.Write("\nCode PIN (ex: 11XXXX) : ");
                         pinCode = Console.ReadLine();
+
+                        // Loop until the PIN is correct
                         while (valueOkPIN == false)
                         {
                             if (int.TryParse(pinCode, out validPin))
                             {
                                 if (pinCode.Length == PinLength)
                                 {
+                                    // Go to the menu if authentication is successful
                                     Menu.menuOption();
                                 }
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.Red;
                                     Console.Write("Votre numero de carte ne comporte pas le bon nombre de chiffres, réessayer : ");
+                                    Console.ResetColor();
                                     valueOkPIN = false;
                                     pinCode = Console.ReadLine();
                                 }
@@ -49,7 +66,9 @@ namespace OO_them_ALL
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.Write("Votre PIN n'est pas correcte ! Merci de réessayer : ");
+                                Console.ResetColor();
                                 valueOkPIN = false;
                                 pinCode = Console.ReadLine();
                             }
@@ -59,7 +78,10 @@ namespace OO_them_ALL
                     }
                     else
                     {
+                        // Card number length error
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("Votre numero de carte ne comporte pas le bon nombre de chiffres, réessayer : ");
+                        Console.ResetColor();
                         cardNumber = Console.ReadLine();
                         valueOkNumCarte = false;
                     }
@@ -67,7 +89,10 @@ namespace OO_them_ALL
                 }
                 else
                 {
+                    // Card number format error
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("Votre numero de carte n'est pas correcte ! Merci de réessayer : ");
+                    Console.ResetColor();
                     cardNumber = Console.ReadLine();
                     valueOkNumCarte = false;
                 }
@@ -76,9 +101,11 @@ namespace OO_them_ALL
 
 
        
-        public static void VerifierCode()
+        public static void VerifyCode()
         {
             Console.Clear();
+
+            // Show entered information
             Console.WriteLine($"Votre numéro de compte : {cardNumber}");
             Console.WriteLine($"Votre PIN : {pinCode}");
             Console.WriteLine("\n\nRetour en arrière, Appuyez sur Enter");
