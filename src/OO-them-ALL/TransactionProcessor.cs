@@ -8,6 +8,9 @@ namespace OO_them_ALL
         public static string withDrawCash;
         public static bool valueOkDraw;
         public static int withDrawBalance = 0;
+        public static int[] tabDraw = Array.Empty<int>();
+        static int size = 1;
+        static int index = 0;
 
         public static void withDraw()
         {
@@ -20,7 +23,7 @@ namespace OO_them_ALL
             while (valueOkDraw == false)
             {
                 
-                if (int.TryParse(withDrawCash, out int withDrawBalance))
+                if (int.TryParse(withDrawCash, out withDrawBalance))
                 {
                     // Check if the balance is sufficient
                     if (withDrawBalance > cash)
@@ -38,6 +41,13 @@ namespace OO_them_ALL
                     }
                     // Update the account balance
                     cash -= withDrawBalance;
+                    
+                    Array.Resize(ref tabDraw, size);
+                    tabDraw[index] = withDrawBalance;
+                    index++;
+                    size++;
+                        
+                    
                     valueOkDraw = true;
                 }
                 else
@@ -49,7 +59,8 @@ namespace OO_them_ALL
                 }
 
             }
-            
+            valueOkDraw = false;
+
         }
         public static void checkBalance()
         {
@@ -85,7 +96,11 @@ namespace OO_them_ALL
             Console.WriteLine("├────────────────────────────────────────┤");
             Console.WriteLine($"│ Compte     : {AuthentificationManager.cardNumber}");
             Console.WriteLine("├────────────────────────────────────────┤");
-            Console.WriteLine($"│ Montant    : -{withDrawBalance} fr              ");
+            Console.WriteLine($"│ Montant    :                           ");
+            for (index = 0; index < tabDraw.Length; index++)
+            {
+                Console.WriteLine($"│               -{tabDraw[index]} fr              ");
+            }
             Console.WriteLine("├────────────────────────────────────────┤");
             Console.WriteLine($"│ Solde dispo: {cash} CHF              ");
             Console.WriteLine("├────────────────────────────────────────┤");
