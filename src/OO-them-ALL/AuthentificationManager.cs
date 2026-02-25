@@ -1,33 +1,33 @@
-﻿
+﻿/// ETML
+/// Auteur : Rayan Sahbani
+/// Date : 23.02.2026
+///Description : projet Bancomat
 
 namespace OO_them_ALL
 {
-    static class AuthentificationManager
+    class AuthentificationManager
     {
-        public static string cardNumber;
-        public static bool valueOkNumCarte;
-        public static int cardNumberLength = 16;
-        public static string pinCode;
-        public static bool valueOkPIN;
-        public static int validPin = 0;
-        public static int PinLength = 6;
-        
+        private string cardNumber="";
+        private bool valueOkNumCarte;
+        private int cardNumberLength = 16;
+        private string pinCode="";
+        private bool valueOkPIN;
+        private int validPin = 0;
+        private int PinLength = 6;
 
-        public static void checkCard()
+        public string CardNumber
         {
-            Console.Clear();
+            get { return  cardNumber; } 
+        }
 
-            // Display main menu and ask for card number
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine(@"█████   █████ ███████   █████     ███   █    █ █   █");
-            Console.WriteLine(@"█    █ █           █    █    █   █   █  ██   █ █  █ ");
-            Console.WriteLine(@"█████   ████      █     █████   ███████ █ █  █ ███  ");
-            Console.WriteLine(@"█   █       █    █      █    █  █     █ █  █ █ █  █ ");
-            Console.WriteLine(@"█    █  █████   █       █████   █     █ █    █ █   █");
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\t\tWelcome to RS7 BANK\n");
-            Console.ResetColor();
+        public bool ValueOkPIN
+        {
+            get { return valueOkPIN; }
+            set { valueOkPIN = value; }
+        }
+        
+        public void checkCard(Menu menu)
+        {
             Console.Write("Numéro de carte (ex: 0212XXXXXXXXXXXX) :  ");
             cardNumber = Console.ReadLine();
 
@@ -52,7 +52,7 @@ namespace OO_them_ALL
                                 if (pinCode.Length == PinLength)
                                 {
                                     // Go to the menu if authentication is successful
-                                    Menu.menuOption();
+                                    menu.menuOption();
                                 }
                                 else
                                 {
@@ -101,7 +101,7 @@ namespace OO_them_ALL
 
 
        
-        public static void VerifyCode()
+        public void VerifyCode()
         {
             Console.Clear();
 

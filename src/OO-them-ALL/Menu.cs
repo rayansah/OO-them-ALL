@@ -1,13 +1,24 @@
-﻿
-
+﻿/// ETML
+/// Auteur : Rayan Sahbani
+/// Date : 23.02.2026
+///Description : projet Bancomat
 namespace OO_them_ALL
 {
-    static class Menu
+    class Menu
     {
-        public static bool returnToMenu = true;
-        public static string choix;
-        public static string[] options = { "Vérifier Code", "Retirer", "Consulter Solde", "Imprimer reçu", "Fermer la session" };
-        public static void menuOption()
+        private AuthentificationManager _manager;
+        private TransactionProcessor _processor;
+        private bool returnToMenu = true;
+        private string choix;
+        private string[] options = { "Vérifier Code", "Retirer", "Consulter Solde", "Imprimer reçu", "Fermer la session" };
+
+        public Menu(TransactionProcessor processor, AuthentificationManager manager)
+        {
+            _processor = processor;
+            _manager = manager;
+        }
+
+        public void menuOption()
         {
             // Loop while the user stays in the menu
             while (returnToMenu)
@@ -22,23 +33,23 @@ namespace OO_them_ALL
 
                 // Ask the user to choose an option
                 Console.Write("\n\t Votre choix : ");
-                AuthentificationManager.valueOkPIN = true;
+                _manager.ValueOkPIN = true;
                 choix = Console.ReadLine();
 
                 // Execute action based on user choice
                 switch (choix)
                 {
                     case "1":
-                        AuthentificationManager.VerifyCode();
+                        _manager.VerifyCode();
                         break;
                     case "2":
-                        TransactionProcessor.withDraw();
+                        _processor.withDraw();
                         break;
                     case "3":
-                        TransactionProcessor.checkBalance();
+                        _processor.checkBalance();
                         break;
                     case "4":
-                        TransactionProcessor.receipt();
+                        _processor.receipt(this._manager);
                         break;
                     case "5":
                         // Exit the session

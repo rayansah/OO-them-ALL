@@ -1,18 +1,24 @@
-﻿
+﻿/// ETML
+/// Auteur : Rayan Sahbani
+/// Date : 23.02.2026
+///Description : projet Bancomat
 namespace OO_them_ALL
 {
-    static class TransactionProcessor
+    class TransactionProcessor
     {
-        
-        public static int cash = 1000;
-        public static string withDrawCash;
-        public static bool valueOkDraw;
-        public static int withDrawBalance = 0;
-        public static int[] tabDraw = Array.Empty<int>();
-        static int size = 1;
-        static int index = 0;
 
-        public static void withDraw()
+        private int cash = 1000;
+        private string withDrawCash;
+        private bool valueOkDraw;
+        private int withDrawBalance = 0;
+        private int[] tabDraw = Array.Empty<int>();
+        private int size = 1;
+        private int index = 0;
+
+        
+        
+
+        public void withDraw()
         {
             Console.Clear();
             // Display withdrawal menu
@@ -62,7 +68,7 @@ namespace OO_them_ALL
             valueOkDraw = false;
 
         }
-        public static void checkBalance()
+        public void checkBalance()
         {
             Console.Clear();
             // Show balance information
@@ -72,7 +78,7 @@ namespace OO_them_ALL
             Console.ReadLine();
         }
 
-        public static void receipt()
+        public void receipt(AuthentificationManager manager)
         {
             Console.Clear();
             // Print receipt header
@@ -94,7 +100,7 @@ namespace OO_them_ALL
             }
             // Print account and transaction details
             Console.WriteLine("├────────────────────────────────────────┤");
-            Console.WriteLine($"│ Compte     : {AuthentificationManager.cardNumber}");
+            Console.WriteLine($"│ Compte     : {manager.CardNumber}");
             Console.WriteLine("├────────────────────────────────────────┤");
             Console.WriteLine($"│ Montant    :                           ");
             for (index = 0; index < tabDraw.Length; index++)
