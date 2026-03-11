@@ -4,19 +4,21 @@
 ///Description : projet Bancomat
 namespace OO_them_ALL
 {
-    class Menu
+    public class Menu
     {
         private AuthentificationManager _manager;
-        private TransactionProcessor _processor;
+        private ClassicTransaction _processor;
         private bool returnToMenu = true;
         private string choix;
         private string[] options = { "Vérifier Code", "Retirer", "Consulter Solde", "Imprimer reçu", "Fermer la session" };
 
-        public Menu(TransactionProcessor processor, AuthentificationManager manager)
+        public Menu(AuthentificationManager manager)
         {
-            _processor = processor;
+            //_processor = processor;
             _manager = manager;
         }
+
+        public ClassicTransaction Processor { set { _processor = value; } }
 
         public void menuOption()
         {

@@ -4,21 +4,22 @@
 ///Description : projet Bancomat
 namespace OO_them_ALL
 {
-    class TransactionProcessor
+     public class ClassicTransaction
     {
+        
 
-        private int cash = 1000;
-        private string withDrawCash;
-        private bool valueOkDraw;
-        private int withDrawBalance = 0;
-        private int[] tabDraw = Array.Empty<int>();
-        private int size = 1;
-        private int index = 0;
+        protected int cash = 1000;
+        protected string withDrawCash;
+        protected bool valueOkDraw;
+        protected int withDrawBalance = 0;
+        protected int[] tabDraw = Array.Empty<int>();
+        protected int size = 1;
+        protected int index = 0;
 
         
         
 
-        public void withDraw()
+        public virtual void withDraw()
         {
             Console.Clear();
             // Display withdrawal menu
@@ -31,9 +32,7 @@ namespace OO_them_ALL
                 
                 if (int.TryParse(withDrawCash, out withDrawBalance))
                 {
-                    // Check if the balance is sufficient
-                    if (withDrawBalance > cash)
-                    {
+                    
                         while (withDrawBalance > cash)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -44,7 +43,7 @@ namespace OO_them_ALL
                          
                         }
 
-                    }
+                    
                     // Update the account balance
                     cash -= withDrawBalance;
                     

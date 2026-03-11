@@ -5,16 +5,25 @@
 
 namespace OO_them_ALL
 {
-    class AuthentificationManager
+    public class AuthentificationManager
     {
-        private string cardNumber="";
+        protected string cardNumber="";
         private bool valueOkNumCarte;
         private int cardNumberLength = 16;
-        private string pinCode="";
+        protected string pinCode="";
         private bool valueOkPIN;
         private int validPin = 0;
         private int PinLength = 6;
 
+        public AuthentificationManager()
+        { }
+
+        //Constructeur pour l'heritage VIP
+        public AuthentificationManager(string cardNumber, string pinCode)
+        {
+            this.cardNumber = cardNumber;
+            this.pinCode = pinCode;
+        }
         public string CardNumber
         {
             get { return  cardNumber; } 
@@ -51,8 +60,16 @@ namespace OO_them_ALL
                             {
                                 if (pinCode.Length == PinLength)
                                 {
-                                    // Go to the menu if authentication is successful
+                                    if(cardNumber == "7777777777777777")
+                                    {
+                                        menu.Processor = new TransactionVIP();
+                                    }
+                                    else
+                                    {
+                                        menu.Processor= new ClassicTransaction();
+                                    }
                                     menu.menuOption();
+                                    
                                 }
                                 else
                                 {
@@ -97,6 +114,8 @@ namespace OO_them_ALL
                     valueOkNumCarte = false;
                 }
             }
+
+            
         }
 
 

@@ -14,12 +14,15 @@ namespace OO_them_ALL
         
         public static void Main(string[] args)
         {
-            
-           
-            TransactionProcessor processor = new TransactionProcessor();
+
+
+            ClassicTransaction processor = new ClassicTransaction();
             AuthentificationManager manager = new AuthentificationManager();
 
-            Menu menu = new Menu(processor,manager);
+        
+                Menu menu = new Menu(manager);
+
+            
             Console.Clear();
 
             // Display main menu and ask for card number
